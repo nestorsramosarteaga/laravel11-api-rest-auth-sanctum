@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group( function () {
     Route::apiResource('/products',ProductController::class);
     Route::apiResource('/brands',BrandController::class);
+
+    Route::get('/logout', [RegisterController::class, 'logout'])->name('logout');
 });
 
 Route::controller(RegisterController::class)->group(function(){
-    Route::post('register', 'register');
+    Route::post('register', action: 'register');
     Route::post('login', 'login');
 });

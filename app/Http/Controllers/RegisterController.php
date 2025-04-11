@@ -63,4 +63,12 @@ class RegisterController extends Controller
             return ApiResponseClass::throw('Unauthorized', 'Unauthorized.', HttpCodesEnum::UNAUTHORIZED);
         }
     }
+
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return response()->json(['message' => 'You have successfully logged and the token was successfully deleted']);
+    }
+
 }
